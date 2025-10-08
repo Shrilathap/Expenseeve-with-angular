@@ -1,0 +1,30 @@
+<div class="login-container">
+  <mat-card appearance="outlined" class="card">
+    <form (ngSubmit)="onSubmit()" [formGroup]="ngForm">
+      <h2>Login</h2>
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" id="email" formControlName="email" required />
+        <mat-error *ngIf="email?.touched || email?.dirty">
+          <ng-container *ngIf="email?.hasError('required')">
+            Email is required
+          </ng-container>
+          <ng-container *ngIf="email?.hasError('email') && !email?.hasError('required')">
+            Enter a valid email
+          </ng-container>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" id="password" formControlName="password" required />
+        <mat-error *ngIf="email?.hasError('required')">Password is required</mat-error>
+      </mat-form-field>
+      <div class="forgot-password">
+        <mat-checkbox [checked]="" color="primary">Remember me</mat-checkbox>
+        <a mat-button color="primary" href="/auth/forgot-password" >Forgot password</a>
+      </div>
+      <button mat-flat-button color="primary" type="submit">Login</button>
+      <p>Don't have an account? <a href="/auth/register" alt>Sign up</a></p>
+    </form>
+  </mat-card>
+</div>
